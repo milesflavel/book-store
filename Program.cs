@@ -47,10 +47,19 @@ order.Taxes.AddRange(taxes);
 // Define the running total of the order
 decimal orderTotal = 0m;
 
+// Write the table header
+ConsoleHelper.WriteTableHeaderRow();
+
 // Loop over the order items, calculating the line total and order total
 // according to unit price, quantity, taxes and applicable discounts
 foreach (OrderItem orderItem in order.OrderItems)
 {
+    // Check for a valid quantity before handling this order item
+    if (orderItem.Quantity <= 0)
+    {
+        continue;
+    }
+
     // The initial line total is Unit Price * Quantity
     decimal lineTotal = orderItem.Product.UnitPrice * orderItem.Quantity;
 
@@ -87,6 +96,9 @@ foreach (OrderItem orderItem in order.OrderItems)
 
     // Add the line total to the order total
     orderTotal += lineTotal;
+
+    // Write the table product row
+    ConsoleHelper.WriteTableProductRow(orderItem, lineTax, lineTotal);
 }
 
 // Check if any order fees apply
@@ -102,6 +114,9 @@ foreach (IOrderFee orderFee in orderFees)
         // This should really be a read-only copy of the fee,
         // so that the saved order doesn't change if the fee is updated
         order.OrderFees.Add(orderFee);
+
+        // Write the table fee row
+        ConsoleHelper.WriteTableFeeRow(orderFee);
     }
 }
 
@@ -116,3 +131,5 @@ foreach (ITax tax in order.Taxes)
     orderTax += tax.CalculateTaxComponent(orderTotal);
 }
 
+// Write the total prices
+ConsoleHelper.WriteOrderTotalRow(orderTax, orderTotal);

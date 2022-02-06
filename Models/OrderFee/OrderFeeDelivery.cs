@@ -39,5 +39,10 @@
         {
             return orderTotalIncludingTax < ThresholdValue;
         }
+
+        public override string ToString()
+        {
+            return $"Delivery fee for orders under {ThresholdValue:C}";
+        }
     }
 }

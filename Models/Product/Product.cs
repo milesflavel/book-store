@@ -9,5 +9,10 @@
         /// Represents the price for a single unit of stock.
         /// </summary>
         public decimal UnitPrice { get; set; }
+
+        public override string ToString()
+        {
+            return "Product";
+        }
     }
 }
