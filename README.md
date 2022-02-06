@@ -8,10 +8,10 @@ They have future plans to add more categories into their collection.
 Currently all books within the Crime category are discounted by 5%.
 
 The following are the additional charges that would be applied to an order:
- * 10% goods services tax (GST) on the total price
- * $5.95 delivery fee for orders less than $20
+  * 10% goods services tax (GST) on the total price
+  * $5.95 delivery fee for orders less than $20
 
-The bookstore holes the following collection:
+The bookstore holds the following collection:
 | Title | Author | Genre | Unit Price (AUD) _GST not applied_ |
 | --- | --- | --- | --- |
 | Unsolved murders | Emily G. Thompson, Amber Hunt | Crime | 10.99 |
@@ -32,3 +32,11 @@ Write a simple console application that outputs the total order cost with and wi
 | Heresy | 1 |
 | Jack the Ripper | 1 |
 | The Tolkien Years | 1 |
+
+## Assumptions
+I've made the following assumptions based on ambiguous information: _(these would be followed-up with the client to ensure that no false assumptions are made)_
+  * The 5% discount on Crime is not already factored in to the unit price
+  * Discounts are applied after tax
+  * Taxes don't stack (tax-on-tax)
+  * Fee amounts are defined as tax-inclusive values
+  * Delivery fees are applied by the according to tax-inclusive total
